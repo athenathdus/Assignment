@@ -9,12 +9,12 @@ void MyDisplay() {
 	glShadeModel(GL_FLAT);
 	glBegin(GL_QUADS);  //GL_QUADS 를 그린다.
 
-    glColor3f(1.0, 0.0, 0.0); // 색 지정
+	glColor3f(1.0, 0.0, 0.0); // 색 지정
 	glVertex3f(1.0, 0.0, 0.0); // v0
 	glVertex3f(-1.0, 0.0, 0.0); // v1
 	glVertex3f(-0.0, 1.0, 1.0); // v2
-	glVertex3f(1.0, 1.0,1.0); // v3
-   
+	glVertex3f(1.0, 1.0, 1.0); // v3
+
 	glEnd();
 	glFlush();  // 화면에 출력한다.
 
