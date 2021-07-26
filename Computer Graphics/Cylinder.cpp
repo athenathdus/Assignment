@@ -2,29 +2,29 @@
 #include<GL/glu.h>
 #include<GL/gl.h>
 
-GLUquadricObj* qobj = gluNewQuadric(); // »õ·Î¿îQuadric »ı¼º
+GLUquadricObj* qobj = gluNewQuadric(); // ìƒˆë¡œìš´Quadric ìƒì„±
 
-int MyListID;//DisplayList´ÂÁ¤¼öID¿¡ÀÇÇØ½Äº°
-// Display List »ı¼º
+int MyListID;//DisplayListëŠ”ì •ìˆ˜IDì—ì˜í•´ì‹ë³„
+// Display List ìƒì„±
 void MyCreateList() {
-	MyListID = glGenLists(1);// DisplayList¼±¾ğ
-	// ¾ÆÀÌµğ¸¦ °¡Áø ¸®½ºÆ®1°³¸¦ »õ·Î¸¸µéµÇ,½ÇÇàÇÏÁö ¾Ê°í ÄÄÆÄÀÏ ¿Ï·áµÈ ¹öÀüÀ» ¸¸µç´Ù.
+	MyListID = glGenLists(1);// DisplayListì„ ì–¸
+	// ì•„ì´ë””ë¥¼ ê°€ì§„ ë¦¬ìŠ¤íŠ¸1ê°œë¥¼ ìƒˆë¡œë§Œë“¤ë˜,ì‹¤í–‰í•˜ì§€ ì•Šê³  ì»´íŒŒì¼ ì™„ë£Œëœ ë²„ì „ì„ ë§Œë“ ë‹¤.
 	glNewList(MyListID, GL_COMPILE);
-	glShadeModel(GL_SMOOTH);// °¢Á¤Á¡¿¡ Á¤ÇÑ »ö»óÀ» º¸°£ÇÏ¿© È¥ÇÕÇÏ¿© Ä¥ÇÏ°Ô ¼³Á¤
-	gluQuadricDrawStyle(qobj, GLU_FILL);// QuadricÀ» À§ÇØ ¿øÇÏ´ÂDraw Style ÁöÁ¤
-	gluQuadricNormals(qobj, GLU_SMOOTH);// ¹ı¼±º¤ÅÍÁ¦¾î
-	gluQuadricOrientation(qobj, GLU_OUTSIDE);// ¹ı¼±º¤ÅÍ³»ºÎ ¹× ¿ÜºÎµî°ú °°Àº¹æÇâÁöÁ¤
-	gluQuadricTexture(qobj, GL_FALSE);// Texture ÁÂÇ¥ »ç¿ëÇÒ°ÍÀÎÁö¿¡´ëÇÑ ¿©ºÎ
+	glShadeModel(GL_SMOOTH);// ê°ì •ì ì— ì •í•œ ìƒ‰ìƒì„ ë³´ê°„í•˜ì—¬ í˜¼í•©í•˜ì—¬ ì¹ í•˜ê²Œ ì„¤ì •
+	gluQuadricDrawStyle(qobj, GLU_FILL);// Quadricì„ ìœ„í•´ ì›í•˜ëŠ”Draw Style ì§€ì •
+	gluQuadricNormals(qobj, GLU_SMOOTH);// ë²•ì„ ë²¡í„°ì œì–´
+	gluQuadricOrientation(qobj, GLU_OUTSIDE);// ë²•ì„ ë²¡í„°ë‚´ë¶€ ë° ì™¸ë¶€ë“±ê³¼ ê°™ì€ë°©í–¥ì§€ì •
+	gluQuadricTexture(qobj, GL_FALSE);// Texture ì¢Œí‘œ ì‚¬ìš©í• ê²ƒì¸ì§€ì—ëŒ€í•œ ì—¬ë¶€
 	glEnd();
 	glEndList();
 }
 void MyDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glViewport(0, 0, 300, 300);
-	GLfloat mat_ambient[] = { 0.5, 0.4, 0.3, 1.0 };//ÁÖº¯±¤
-	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };//¹İ»ç±¤
-	GLfloat mat_shininess[] = { 50.0 };//¼±¸íµµ
-	GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };//Á¶¸íÀ§Ä¡
+	GLfloat mat_ambient[] = { 0.5, 0.4, 0.3, 1.0 };//ì£¼ë³€ê´‘
+	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };//ë°˜ì‚¬ê´‘
+	GLfloat mat_shininess[] = { 50.0 };//ì„ ëª…ë„
+	GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };//ì¡°ëª…ìœ„ì¹˜
 	GLfloat model_ambient[] = { 0.5, 0.4, 0.3, 1.0 };
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
@@ -42,10 +42,10 @@ void MyDisplay() {
 
 	gluCylinder(qobj, 2.0, 0.0, 2.0, 20, 8);
 	glutSwapBuffers();
-	glCallList(MyListID); // ÄÄÆÄÀÏÀÌ¿Ï·áµÈ¸®½ºÆ®°¡½ÇÁ¦·Î½ÇÇà
+	glCallList(MyListID); // ì»´íŒŒì¼ì´ì™„ë£Œëœë¦¬ìŠ¤íŠ¸ê°€ì‹¤ì œë¡œì‹¤í–‰
 	glFlush();
 }
-void Reshape(int w, int h) { //¸ğ´ÏÅÍÀÇ Å©±â°¡ º¯°æµÇ¾úÀ»¶§ È£ÃâµÇ´Â reshape Äİ¹éÇÔ¼ö
+void Reshape(int w, int h) { //ëª¨ë‹ˆí„°ì˜ í¬ê¸°ê°€ ë³€ê²½ë˜ì—ˆì„ë•Œ í˜¸ì¶œë˜ëŠ” reshape ì½œë°±í•¨ìˆ˜
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -56,16 +56,16 @@ void Reshape(int w, int h) { //¸ğ´ÏÅÍÀÇ Å©±â°¡ º¯°æµÇ¾úÀ»¶§ È£ÃâµÇ´Â reshape Äİ¹
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB);
-	glutInitWindowSize(300, 300); // window Ã¢ »çÀÌÁî¸¦ 300,300À¸·Î ÁöÁ¤ 
+	glutInitWindowSize(300, 300); // window ì°½ ì‚¬ì´ì¦ˆë¥¼ 300,300ìœ¼ë¡œ ì§€ì • 
 	glutInitWindowPosition(0, 0);
-	glutCreateWindow("Cylinder");  // Ã¢ ÀÌ¸§À» Cylinder·Î ÁöÁ¤ 
+	glutCreateWindow("Cylinder");  // ì°½ ì´ë¦„ì„ Cylinderë¡œ ì§€ì • 
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-1.0, 1.0, -1.0, 1.0, 1.0, -1.0);
 	glutDisplayFunc(MyDisplay);
 	glutReshapeFunc(Reshape);
-	MyCreateList(); // Display List »ı¼º
+	MyCreateList(); // Display List ìƒì„±
 	glutMainLoop();
 	return 0;
 }
